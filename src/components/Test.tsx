@@ -10,8 +10,15 @@ interface Props {
   element?: React.ReactElement
   isGirl?: boolean
 }
-const Test: React.FC<Props> = ({ title = '默认标题' }) => {
+
+const defaultProps: Partial<Props> = { 
+  title: '默认标题',
+  id: 0,
+}
+const Test: React.FC<Props> = (props) => {
+  const { title, id } = { ...defaultProps, ...props }
   console.log('🚀 ~ :14 ~ title:', title)
+  console.log('🚀 ~ :20 ~ id:', id)
   return <div>Test Component</div>
 }
 

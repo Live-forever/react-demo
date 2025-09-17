@@ -8,7 +8,8 @@ interface Props {
   cb?: (a: number, b: number) => number
   empty?: null
   element?: React.ReactElement
-  isGirl?: boolean
+  isGirl?: boolean,
+  children?: React.ReactNode
 }
 
 const defaultProps: Partial<Props> = { 
@@ -16,10 +17,13 @@ const defaultProps: Partial<Props> = {
   id: 0,
 }
 const Test: React.FC<Props> = (props) => {
+  console.log('🚀 ~ :19 ~ props:', props)
   const { title, id } = { ...defaultProps, ...props }
   console.log('🚀 ~ :14 ~ title:', title)
   console.log('🚀 ~ :20 ~ id:', id)
-  return <div>Test Component</div>
+  return <div>Test Component
+    {props.children}
+  </div>
 }
 
 export default Test

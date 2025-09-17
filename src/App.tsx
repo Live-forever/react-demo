@@ -12,7 +12,9 @@ function App() {
         empty={null}
         element={<div>测试</div>}
         isGirl={false}
-        />
+        >
+          <div>123</div>
+        </Test>
     </>
   )
 }

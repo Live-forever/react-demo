@@ -10,8 +10,8 @@ interface Props {
   element?: React.ReactElement
   isGirl?: boolean
 }
-const Test: React.FC<Props> = (props) => {
-  console.log('🚀 ~ :14 ~ props:', props)
+const Test: React.FC<Props> = ({ title = '默认标题' }) => {
+  console.log('🚀 ~ :14 ~ title:', title)
   return <div>Test Component</div>
 }
 

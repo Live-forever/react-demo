@@ -4,8 +4,7 @@ function App() {
 
   return (
     <>
-      <Test 
-        title={'测试'}
+      <Test
         id={1}
         obj={{ a: 1, b: 2 }}
         arr={[1, 2, 3]}

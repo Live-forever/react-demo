@@ -9,7 +9,7 @@ export default function Card() {
       </header>
       <main>内容区域</main>
       <footer>
-        <button>确认</button>
+        <button onClick={() => window.onShow()}>确认</button>
         <button>取消</button>
       </footer>
     </div>

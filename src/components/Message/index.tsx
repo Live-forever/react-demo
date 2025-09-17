@@ -1,0 +1,44 @@
+import ReactDom from "react-dom/client";
+import "./index.css";
+
+const Message = () => {
+  return <div>我是消息提示组件</div>;
+};
+
+interface Items {
+  messageContainer: HTMLDivElement;
+  root: ReactDom.Root;
+}
+
+const queue: Items[] = [];
+window.onShow = () => {
+  const messageContainer = document.createElement("div");
+  messageContainer.className = "message";
+  messageContainer.style.top = `${queue.length * 50}px`;
+
+  document.body.appendChild(messageContainer);
+
+  const root = ReactDom.createRoot(messageContainer);
+  root.render(<Message />); // 渲染组件
+  queue.push({
+    messageContainer,
+    root,
+  });
+  // 1秒后移除
+  setTimeout(() => {
+    const item = queue.find(
+      (item) => item.messageContainer === messageContainer
+    )!;
+    item.root.unmount(); // 卸载
+    document.body.removeChild(item.messageContainer);
+    queue.splice(queue.indexOf(item), 1);
+  }, 1000);
+};
+
+export default Message;
+
+declare global {
+  interface Window {
+    onShow: () => void;
+  }
+}

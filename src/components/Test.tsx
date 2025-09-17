@@ -5,7 +5,7 @@ interface Props {
   id?: number
   obj?: { a: number; b: number }
   arr?: number[]
-  cb?: (a: number, b: number) => number
+  cb?: (a: string) => void
   empty?: null
   element?: React.ReactElement
   isGirl?: boolean,
@@ -21,7 +21,8 @@ const Test: React.FC<Props> = (props) => {
   const { title, id } = { ...defaultProps, ...props }
   console.log('🚀 ~ :14 ~ title:', title)
   console.log('🚀 ~ :20 ~ id:', id)
-  return <div>Test Component
+  return <div onClick={() => props.cb && props.cb('child params')}>
+    Test Component
     {props.children}
   </div>
 }

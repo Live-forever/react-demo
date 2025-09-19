@@ -1,25 +1,23 @@
-import React, { useRef } from 'react'
+import React, { useState } from 'react'
 
 // React 非受控组件
-// 非受控组件指的是该表单元素不受React的State管理，
-// 表单的数据由DOM管理。通过useRef()来获取表单元素的值。
+// 特殊的表单File
+// 对于file类型的表单控件，它是一个特殊的组件，因为它的值只能由用户通过文件选择操作来设置，
+// 而不能通过程序直接设置。这使得它在React中的处理方式与其他表单元素有所不同。
 
-// 我们使用defaultValue来设置表单的默认值，但是你要想实时获取值，
-// 就需要使用useRef()来获取表单元素的值。跟操作DOM一样。
+// 如果非要把file类型设置为受控组件，他就会就行报错
 
 const App: React.FC= () => {
-  const handleChange = () => {
-    if (inputRef.current) {
-      console.log(inputRef.current.value)
-    }
+  const [file, setFile] = useState<File | null>(null)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFile(e.target.files?.[0]!)
   }
 
-  const defaultValue = 'hello'
-  const inputRef = useRef<HTMLInputElement>(null)
 
   return (
     <>
-      <input type="text" defaultValue={defaultValue} onChange={handleChange} ref={inputRef} />
+      <input type="file" value={file} onChange={handleChange} />
     </>
   )
 }

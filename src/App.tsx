@@ -1,25 +1,19 @@
-import React, { useRef } from 'react'
+import React from 'react'
+import { createPortal } from 'react-dom'
 
-// React 非受控组件
-// 特殊的表单File
-// 对于file类型的表单控件，它是一个特殊的组件，因为它的值只能由用户通过文件选择操作来设置，
-// 而不能通过程序直接设置。这使得它在React中的处理方式与其他表单元素有所不同。
+// createPortal
+// 注意这是一个API，不是组件，他的作用是：将一个组件渲染到DOM的任意位置，跟Vue的Teleport组件类似。
 
-// 将其修改为非受控组件
+// 应用场景
+//  弹窗
+//  下拉框
+//  全局提示
+//  全局遮罩
+//  全局Loading
 
 const App: React.FC= () => {
-  const fileInputRef = useRef<HTMLInputElement>(null)
-  const handleChange = () => {
-    if (fileInputRef.current) {
-      const files = fileInputRef.current.files
-      console.log('🚀 ~ :15 ~ files:', files)
-    }
-  }
-  
   return (
-    <>
-      <input type="file" onChange={handleChange} ref={fileInputRef} />
-    </>
+    createPortal(<div>Portal Content</div>, document.body, 'portal')
   )
 }
 
